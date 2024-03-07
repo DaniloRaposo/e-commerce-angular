@@ -1,0 +1,79 @@
+<div class="container">
+  <div class="signup-container">
+    <form (ngSubmit)="submit()" [formGroup]="signupForm" #form="ngForm">
+      <div class="field-container">
+        <label for="email">E-mail</label>
+
+        <div class="input-container">
+          <input
+            id="email"
+            name="email"
+            placeholder="email"
+            formControlName="email"
+            required
+            [class.invalid]="email?.invalid && form.submitted"
+          />
+
+          <p *ngIf="email?.invalid && form.submitted" class="error">Invalid E-mail</p>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <label for="name">Name</label>
+
+        <div class="input-container">
+          <input
+            id="name"
+            name="name"
+            placeholder="name"
+            formControlName="name"
+            required
+            [class.invalid]="name?.invalid && form.submitted"
+          />
+
+          <p *ngIf="name?.invalid && form.submitted" class="error">Invalid Name</p>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <label for="password">Password</label>
+
+        <div class="input-container">
+          <input
+            id="password"
+            type="password"
+            name="password"
+            placeholder="password"
+            formControlName="password"
+            required
+            [class.invalid]="password?.invalid && form.submitted"
+          />
+
+          <p *ngIf="password?.invalid && form.submitted" class="error">Invalid Password</p>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <label for="password">Repeat Password</label>
+
+        <div class="input-container">
+          <input
+            id="password-again"
+            type="password"
+            name="password-again"
+            placeholder="password"
+            formControlName="passwordAgain"
+            required
+            [class.invalid]="passwordAgain?.invalid && form.submitted"
+          />
+
+          <p *ngIf="passwordAgain?.invalid && form.submitted" class="error">Passwords not match</p>
+        </div>
+      </div>
+
+      <div class="button-container">
+        <button type="submit">Sign Up</button>
+      </div>
+    </form>
+  </div>
+</div>
