@@ -1,0 +1,15 @@
+<div *ngIf="opened" class="container">
+  <div class="overlay" (click)="close()"></div>
+  <div class="modal-container">
+    <div class="close-button-container">
+      <button (click)="close()">
+        X
+      </button>
+    </div>
+    <div class="content">
+      <p [class]="modalData.type" class="modal-title">{{ modalData.title }}</p>
+
+      <p [class]="modalData.type" class="modal-content"> {{ modalData.content }} </p>
+    </div>
+  </div>
+</div>
