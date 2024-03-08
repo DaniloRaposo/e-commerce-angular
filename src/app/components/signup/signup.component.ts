@@ -96,7 +96,7 @@ export class SignupComponent {
         return response.json();
       })
       .then(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       })
       .catch((err) => {
         this.modalData = {
