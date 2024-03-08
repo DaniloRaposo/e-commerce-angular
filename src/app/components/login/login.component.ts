@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import {
@@ -8,16 +8,20 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { ModalComponent } from '../modal/modal.component';
+import { Modal } from '../../modal';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, ModalComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   loginForm!: FormGroup;
+  modalData!: Modal;
+  @ViewChild(ModalComponent) modal?: ModalComponent;
 
   constructor() {}
 
@@ -67,7 +71,13 @@ export class LoginComponent {
         }
       })
       .catch((err) => {
-        console.log(err);
+        this.modalData = {
+          title: "Error",
+          type: "error",
+          content: err.message,
+        }
+
+        this.modal?.open();
       });
   }
 }
