@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
@@ -11,23 +11,28 @@ import {
   AbstractControl,
   ValidationErrors,
 } from '@angular/forms';
+import { ModalComponent } from '../modal/modal.component';
+import { Modal } from '../../modal';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ModalComponent],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.scss',
 })
 export class SignupComponent {
   signupForm!: FormGroup;
+  modalData!: Modal;
+
+  @ViewChild(ModalComponent) modal?: ModalComponent;
 
   constructor(private router: Router) {}
 
   ngOnInit() {
     this.signupForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
-      name: new FormControl("", [Validators.required]),
+      name: new FormControl('', [Validators.required]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(6),
@@ -52,7 +57,7 @@ export class SignupComponent {
   }
 
   get name() {
-    return this.signupForm.get("name");
+    return this.signupForm.get('name');
   }
 
   private equalPasswordValidator(): ValidatorFn {
@@ -83,18 +88,23 @@ export class SignupComponent {
         password: this.password?.value,
       }),
     })
-      .then(response => {
+      .then((response) => {
         if (response.status !== 200 && response.status !== 201) {
           throw new Error(`Error ${response.status}`);
         }
 
         return response.json();
-      }).then((responseContent) => {
-        console.log(responseContent)
-        this.router.navigate(["/"]);
+      })
+      .then(() => {
+        this.router.navigate(['/']);
       })
       .catch((err) => {
-        console.log(err);
+        this.modalData = {
+          title: 'Error',
+          type: 'error',
+          content: err?.message,
+        };
+        this.modal?.open();
       });
   }
 }
