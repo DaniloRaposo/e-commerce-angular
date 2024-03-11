@@ -8,6 +8,7 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ModalComponent } from '../modal/modal.component';
 import { Modal } from '../../modal';
 
@@ -23,7 +24,7 @@ export class LoginComponent {
   modalData!: Modal;
   @ViewChild(ModalComponent) modal?: ModalComponent;
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -68,6 +69,7 @@ export class LoginComponent {
       .then((res: { token?: string }) => {
         if (res?.token) {
           localStorage.setItem("token", res.token);
+          this.router.navigate(["/"]);
         }
       })
       .catch((err) => {
