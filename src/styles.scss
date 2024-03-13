@@ -12,10 +12,21 @@ body {
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
-input {
+input, textarea {
   border-radius: 0.875rem;
-  border: 2px solid rgba(0,0,0, 0.3);
+  border: 0.125rem solid rgba(0,0,0, 0.3);
   width: 100%;
-  height: 25px;
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+input {
+  height: 1.5625rem;
+
+}
+
+textarea {
+  height: 3.75rem;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
