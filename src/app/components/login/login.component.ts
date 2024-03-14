@@ -9,6 +9,7 @@ import {
   ReactiveFormsModule,
 } from '@angular/forms';
 import { Router } from '@angular/router';
+import { SessionsService } from '../../services/sessions.service';
 import { ModalComponent } from '../modal/modal.component';
 import { Modal } from '../../modal';
 
@@ -24,7 +25,7 @@ export class LoginComponent {
   modalData!: Modal;
   @ViewChild(ModalComponent) modal?: ModalComponent;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private session: SessionsService) {}
 
   ngOnInit() {
     this.loginForm = new FormGroup({
@@ -66,11 +67,9 @@ export class LoginComponent {
 
         return response.json();
       })
-      .then((res: { token?: string }) => {
-        if (res?.token) {
-          localStorage.setItem("token", res.token);
-          this.router.navigate(["/"]);
-        }
+      .then((res: { token: string, userId: string }) => {
+        this.session.loginHandler(res.token, res.userId);
+        this.router.navigate(["/"]);
       })
       .catch((err) => {
         this.modalData = {

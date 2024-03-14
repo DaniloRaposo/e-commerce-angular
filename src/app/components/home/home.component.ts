@@ -5,6 +5,7 @@ import { Product } from '../../product';
 import { ModalComponent } from '../modal/modal.component';
 import { Modal } from '../../modal';
 import { ProductService } from '../../services/product.service';
+import { SessionsService } from '../../services/sessions.service';
 
 @Component({
   selector: 'app-home',
@@ -18,15 +19,14 @@ export class HomeComponent {
   modalData!: Modal;
   @ViewChild(ModalComponent) modal!: ModalComponent;
 
-  constructor(private router: Router, private productService: ProductService) {}
+  constructor(private router: Router, private productService: ProductService, private session: SessionsService) {}
 
   ngOnInit() {
     this.getProducts();
   }
 
   logout() {
-    localStorage.removeItem("token");
-    this.router.navigate(["/login"]);
+    this.session.logoutHandler();
   }
 
   createProduct() {
