@@ -4,13 +4,14 @@ import { Router } from '@angular/router';
 import { Product } from '../../product';
 import { ModalComponent } from '../modal/modal.component';
 import { Modal } from '../../modal';
+import { ProductCardComponent } from '../product-card/product-card.component';
 import { ProductService } from '../../services/product.service';
 import { SessionsService } from '../../services/sessions.service';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [ModalComponent, CommonModule],
+  imports: [ModalComponent, CommonModule, ProductCardComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })
