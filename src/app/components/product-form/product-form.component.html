@@ -1,0 +1,70 @@
+<div class="container">
+  <div class="product-container">
+    <form (ngSubmit)="submit()" [formGroup]="productForm" #form="ngForm">
+      <div class="field-container">
+        <label for="name">Product Name</label>
+        <div class="input-container">
+          <input
+            id="name"
+            name="name"
+            placeholder="name"
+            formControlName="name"
+            required
+            [class.invalid]="name?.invalid && form.submitted"
+          />
+
+          <p *ngIf="name?.invalid && form.submitted" class="error">Invalid Name</p>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <label for="price">Price</label>
+        <div class="input-container">
+          <input
+            id="price"
+            type="number"
+            name="price"
+            placeholder="price"
+            formControlName="price"
+            required
+            [class.invalid]="price?.invalid && form.submitted"
+          />
+
+          <p *ngIf="price?.invalid && form.submitted" class="error">Invalid Price</p>
+        </div>
+      </div>
+
+      <div class="field-container">
+        <label for="description">Description</label>
+        <div class="input-container">
+          <textarea
+            id="description"
+            type="number"
+            name="description"
+            placeholder="description"
+            formControlName="description"
+            required
+            [class.invalid]="description?.invalid && form.submitted"
+          ></textarea>
+
+          <p *ngIf="description?.invalid && form.submitted" class="error">Invalid Description</p>
+        </div>
+      </div>
+
+      <input type="file" class="file-input" (change)="selectFile($event)" #fileInput />
+
+      <div class="file-container">
+        <button class="file-button" (click)="fileInput.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+        <p class="file-name">{{ file?.name ?? "File not selected" }}</p>
+      </div>
+
+      <div class="button-container">
+        <button type="submit">Create Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<app-modal [modalData]="modalData"></app-modal>
