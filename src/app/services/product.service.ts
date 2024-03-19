@@ -27,6 +27,26 @@ export class ProductService {
       });
   }
 
+  async getProduct(id: string): Promise<Product | boolean> {
+    return fetch(`http://localhost:8080/shop/product/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`
+      }
+    })
+      .then((response) => {
+        if (response.status !== 200 && response.status !== 201) {
+          throw new Error(`Error ${response.status}`);
+        }
+
+        return response.json();
+      }).then((content: {product: Product}) => {
+        return content.product;
+      })
+      .catch((err) => {
+        return false;
+      });
+  }
+
   async createProduct(name: string, price: string, description: string, image: File): Promise<boolean> {
     const formData = new FormData();
     formData.append("image", image);
