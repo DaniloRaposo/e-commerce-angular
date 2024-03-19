@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { Product } from '../../product';
 
 @Component({
@@ -11,7 +12,9 @@ import { Product } from '../../product';
 export class ProductCardComponent {
   @Input() product!: Product;
 
-  seeDetails() {
-    console.log(this.product);
+  constructor(private router: Router) {}
+
+  seeDetails(id: string) {
+    this.router.navigate([`/product/${id}`]);
   }
 }

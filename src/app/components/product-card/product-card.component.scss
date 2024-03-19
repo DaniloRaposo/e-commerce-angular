@@ -47,7 +47,8 @@
   }
 
   .button-container {
-    display: var(--display-buttons, none);
+    display: flex;
+    opacity: var(--display-buttons, 0);
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -56,6 +57,7 @@
     height: 100%;
     background-color: rgba(0,0,0,0.5);
     z-index: 1;
+    transition-duration: 500ms;
 
     button {
       font-size: 18px;
@@ -74,6 +76,6 @@
 }
 
 .card-container:hover {
-  --display-buttons: flex;
+  --display-buttons: 1;
 }
 
