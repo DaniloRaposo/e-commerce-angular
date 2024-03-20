@@ -13,6 +13,7 @@ import { Product } from '../../product';
 })
 export class ProductDetailsComponent {
   product?: Product;
+  userId = "";
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -21,6 +22,7 @@ export class ProductDetailsComponent {
 
   ngOnInit() {
     this.getProduct();
+    this.userId = localStorage.getItem("userId") ?? "";
   }
 
   getProduct() {

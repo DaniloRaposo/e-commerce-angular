@@ -1,14 +1,24 @@
 <div class="container">
   <div class="product-container" *ngIf="product">
     <img src="http://localhost:8080/{{product.imageUrl}}">
-    <div class="info-container">
-      <p class="name"> {{product.name}} </p>
-      <p class="price"> Price: ${{product.price}} </p>
-      <div class="description-container">
-        <p class="description-title">
-          Description
-        </p>
-        <p class="description">{{product.description}} </p>
+    <div class="info">
+      <div class="info-container">
+        <p class="name"> {{product.name}} </p>
+        <p class="price"> Price: ${{product.price}} </p>
+        <div class="description-container">
+          <p class="description-title">
+            Description
+          </p>
+          <p class="description">{{product.description}} </p>
+        </div>
+      </div>
+      <div class="button-container">
+        <button>
+          Buy
+        </button>
+        <button *ngIf="product.userId !== userId">
+          Chat
+        </button>
       </div>
     </div>
   </div>

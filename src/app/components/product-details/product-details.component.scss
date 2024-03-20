@@ -10,11 +10,11 @@
 
   .product-container {
     display: grid;
-    grid-template-columns: 3fr 4fr;
-    gap: 3.125rem;
+    grid-template-columns: 3fr 3fr;
+    gap: 15%;
     padding: 1.875rem;
     width: 50%;
-    border: 0.25rem solid #777;
+    background-color: rgba(153, 153, 153, 0.6 );
     border-radius: 1.5625rem;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 
@@ -22,38 +22,66 @@
       border: 0.125rem solid #333;
       border-radius: 1.5625rem;
       width: 100%;
+      box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     }
 
-    .info-container {
+    .info {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      justify-content: space-between;
+      gap: 0.625rem;
+      height: 100%;
 
-      p {
-        margin: 0;
-      }
+      .info-container {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
 
-      .name {
-        font-size: 1.5rem;
-        font-weight: 500;
-        text-transform: capitalize;
-      }
-
-      .price {
-        font-size: 1.125rem;
-      }
-
-      .description-container {
-        .description-title {
-          font-size: 1.25rem;
-          font-weight: 500;
+        p {
+          margin: 0;
         }
 
-        .description {
-          margin-left: 0.625rem;
+        .name {
+          font-size: 1.5rem;
+          font-weight: 500;
+          text-transform: capitalize;
+        }
+
+        .price {
+          font-size: 1.125rem;
+        }
+
+        .description-container {
+          .description-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+          }
+
+          .description {
+            margin-left: 0.625rem;
+          }
+        }
+      }
+
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        align-items: center;
+        gap: 1.25rem;
+
+        button {
+          width: 30%;
+          border: none;
+          border-radius: 1.25rem;
+          font-size: 1rem;
+          font-weight: 500;
+          background-color: rgb(172, 90, 219, 0.8);
+          color: white;
+          height: 1.875rem;
+          cursor: pointer;
         }
       }
     }
-
   }
 }
